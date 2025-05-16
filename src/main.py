@@ -1,6 +1,6 @@
 from cleo.application import Application
 
-from image_scraper.ImageScraperCommand import ImageScraperCommand
+from commands.ImageScraperCommand import ImageScraperCommand
 from TestCommand import TestCommand
 
 application = Application()

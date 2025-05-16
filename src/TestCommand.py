@@ -1,20 +1,8 @@
 import mimetypes
-import time
-from typing import Optional
-
-from cleo.helpers import option
-from cleo.ui.progress_bar import ProgressBar
-from bs4 import BeautifulSoup
-import os
-import requests
-import json
-from urllib.parse import urljoin, urlparse
 
 from exiftool import ExifTool, exiftool
 
-from AbstractCommand import AbstractCommand
-from image_scraper.VirtualBrowser import VirtualBrowser
-from utils.HarHelper import HarHelper
+from commands.AbstractCommand import AbstractCommand
 
 
 class TestCommand(AbstractCommand):
