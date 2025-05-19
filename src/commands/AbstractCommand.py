@@ -15,12 +15,12 @@ class AbstractCommand(Command):
             style: str | None = None,
             verbosity: Verbosity = Verbosity.NORMAL
     ) -> None:
-        if self.active_progress_bar:
+        if self.active_progress_bar and self.io.output.verbosity.value >= verbosity.value:
             self.active_progress_bar.clear()
 
         Command.line(self, text, style, verbosity)
 
-        if self.active_progress_bar:
+        if self.active_progress_bar and self.io.output.verbosity.value >= verbosity.value:
             self.active_progress_bar.display()
 
     def line_debug(self, message: str) -> None:

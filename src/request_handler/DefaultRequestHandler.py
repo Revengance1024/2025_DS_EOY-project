@@ -26,7 +26,7 @@ class DefaultRequestHandler(AbstractRequestHandler):
         })
 
     def get_page(self, url: str, extra: Optional[dict] = None) -> str:
-        if extra.get('query_params'):
+        if extra and extra.get('query_params'):
             query_params = extra.get('query_params')
             url = f"{url}&{urlencode(query_params)}" if "?" in url else f"{url}?{urlencode(query_params)}"
 
