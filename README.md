@@ -19,16 +19,18 @@ uv run src/main.py image-scraper --search="potato" -s
 uv run src/main.py image-scraper --from-url="https://talsicurling.lv/" --download-threads=16 --output-dir="/tmp/images"
 ```
 
-### Demonstrācija
+## Demonstrācija
 
-#### Lejupielādēt attēlus no tīmekļa lapas
-
+### Lejupielādēt attēlus no tīmekļa lapas
 ![Demo](demo/demo.gif)
 
-#### Izmantojot tikai 1 pavedienu
+### Lejupielādēt attēlus pēc atslēgas vārda no DuckDuckGo
+![DuckDuckGo search](demo/search.gif)
+
+### Izmantojot tikai 1 pavedienu
 ![1 pavediena veiktspēja](demo/threads-1.gif)
 
-#### Izmantojot 8 pavedienus
+### Izmantojot 8 pavedienus
 ![8 pavedienu veiktspēja](demo/threads-8.gif)
 
 ## Opcijas
