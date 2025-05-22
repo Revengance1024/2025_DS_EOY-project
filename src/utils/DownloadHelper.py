@@ -12,7 +12,7 @@ from utils.ImageHelper import ImageHelper
 
 class DownloadHelper:
     def __init__(self, urls: list[str], output_dir: str, name_map: Optional[dict[str, str]] = None,
-                 max_threads: int = 8, status_callback: Optional[callable] = None):
+                 max_threads: int = 4, status_callback: Optional[callable] = None):
         self.urls: list[str] = urls
         self.output_dir: str = output_dir
         self.name_map: Optional[dict[str, str]] = name_map

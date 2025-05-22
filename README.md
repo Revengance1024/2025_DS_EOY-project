@@ -16,8 +16,20 @@ uv run src/main.py image-scraper --from-url="https://talsicurling.lv/"
 uv run src/main.py image-scraper --search="potato" -s
 
 # Paātrināt bilžu lejupielādi izmantojot vairākus threads. Saglabāt bilžu failus /tmp/images direktorijā
-uv run src/main.py image-scraper --from-url="https://talsicurling.lv/" --threads=16 --output-dir="/tmp/images"
+uv run src/main.py image-scraper --from-url="https://talsicurling.lv/" --download-threads=16 --output-dir="/tmp/images"
 ```
+
+### Demonstrācija
+
+#### Lejupielādēt attēlus no tīmekļa lapas
+
+![Demo](demo/demo.gif)
+
+#### Izmantojot tikai 1 pavedienu
+![1 pavediena veiktspēja](demo/threads-1.gif)
+
+#### Izmantojot 8 pavedienus
+![8 pavedienu veiktspēja](demo/threads-8.gif)
 
 ## Opcijas
 
@@ -117,6 +129,11 @@ Patērē mazāk resursu nekā Selenium, bet nespēj attēlot mājas lapu saturu 
 
 Selenium Chrome WebDriver, kas spēj apiet dažādas aizsardzības pret botu skrāpēšanu. Iekļauts, lai
 varētu izmantot --headless režīmu, kas ļauj palaist Chrome bez grafiskā interfeisa.
+
+### [vhs](https://github.com/charmbracelet/vhs)
+
+Komandlīnijas rīks, kas ļauj viegli izveidot video demonstrācijas. Izmantots, lai izveidotu demo video
+.gif formātā, kas attēloti README.md failā (demo direktorijā).
 
 
 ## Atrunājumi

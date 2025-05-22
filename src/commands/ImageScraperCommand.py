@@ -6,10 +6,10 @@ import os
 
 import bs4
 from cleo.helpers import option
-from bs4 import BeautifulSoup, PageElement, Tag, NavigableString
+from bs4 import BeautifulSoup, Tag
 
 from commands.AbstractCommand import AbstractCommand
-from modules.DuckDuckGoModule import DuckDuckGoModule
+from data_structure.ImageNameSet import ImageNameSet
 from request_handler.AbstractRequestHandler import AbstractRequestHandler
 from request_handler.DefaultRequestHandler import DefaultRequestHandler
 from request_handler.SeleniumRequestHandler import SeleniumRequestHandler
@@ -95,7 +95,7 @@ class ImageScraperCommand(AbstractCommand):
         img_urls = []
         img_map = {}  # TODO: Add custom data structure to map image names to URLs
 
-        img: PageElement | Tag | NavigableString
+        img: Tag
         for img in images:
             img_url = img.get('src')
             if not img_url:
@@ -172,22 +172,18 @@ class ImageScraperCommand(AbstractCommand):
         self.active_progress_bar.set_message("0", "skipped")
 
 
-    existing_image_names = set()
+    existing_image_names = ImageNameSet()
 
     def get_image_name(self, img_url: str, img: Tag) -> Optional[str]:
         parsed_url = urllib.parse.urlparse(img_url)
         original_filename = parsed_url.path.split('/')[-1]
 
         if ImageHelper.is_img_filename(original_filename):
-            name = original_filename
+            return self.existing_image_names.force_add(original_filename)
         elif img.get('alt'):
             name = img.get('alt').replace(' ', '_').replace('/', '_').lower()
             name = re.sub(r'\W', '', name)[:50]
-            if name in self.existing_image_names:
-                name = f"{name}_{len(self.existing_image_names)}"
+
+            return self.existing_image_names.force_add(name)
         else:
             return None
-
-        self.existing_image_names.add(name)
-
-        return name
